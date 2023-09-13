@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simulation_Game</h1>
+</body>
+<script>
+    let basicVehicle=function(brand,model,speed,fuelType)
+    {
+        this.Brand=brand;
+        this.Model=model;
+        this.Speed=speed;
+        this.fuelType=fuelType;
+        basicVehicle.prototype.accerelate=function()
+        {
+            console.log(`Please Increase the speed`);
+        }
+        basicVehicle.prototype.brake=function()
+        {
+            console.log(`Please Decrease the speed`);
+        }
+        basicVehicle.prototype.refuel=function()
+        {
+            console.log(`Please refuel your vehicle`)
+        }
+    }
+    let car=function(brand,model,speed,fuelType,numsOfWheel)
+    {
+        basicVehicle.call(this,brand,model,speed,fuelType)
+        this.numsOfWheel=numsOfWheel;
+        car.prototype.honk=function()
+        {
+            console.log(`Honking Sound`) 
+        }
+        Object.setPrototypeOf(car.prototype, basicVehicle.prototype)
+
+    }
+    let Airplane=function(brand,model,speed,fuelType,numsOfWheel,numsOfEngines,hasLandingGear)
+    {
+        car.call(this,brand,model,speed,fuelType,numsOfWheel);
+        this.numsOfEngines=numsOfEngines;
+        this.hasLandingGear=hasLandingGear;
+
+        Airplane.prototype.takeOff=function()
+        {
+            console.log(`Please take your self plane is landing`)
+        }
+
+        Object.setPrototypeOf(Airplane.prototype, basicVehicle.prototype)
+    }
+    let AirIndigo=new Airplane("Indigo", "Ind1200", 1200, "Aviation Kerosene", 6, 2, "Yes")
+    let vehicle=new basicVehicle("Audi", "R8", 420, "Petrol")
+    let bmw800=new car("BMW", "X800", 450, "Diesel", 4)
+    console.log(vehicle);
+</script>
+</html>
